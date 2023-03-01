@@ -1,10 +1,18 @@
-FROM python:3.9.13
+FROM python:3.8.8-slim-buster
 
-ADD . /Project2/
+# Working Directory
+WORKDIR /app
 
-WORKDIR /Project2
+# Copy source code to working directory
+COPY . app.py /app/
 
-RUN pip install -r /Project2/requirements.txt
-RUN pip install requests
+# Install packages from requirements.txt
+# hadolint ignore=DL3013
+RUN pip install --no-cache-dir --upgrade pip &&\
+    pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
 EXPOSE 8080
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "app.py" ]

@@ -1,22 +1,21 @@
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
-
-test:
-	python -m pytest -vv --cov=main --cov=mylib test_*.py
-
-format:	
-	black *.py 
+	pip3 install --upgrade pip &&\
+		pip3 install -r requirements.txt
 
 lint:
-	pylint --disable=R,C --ignore-patterns=test_.*?py *.py mylib/*.py
-
-container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
+	pylint --disable=R,C,W1203,W0702,E0611 app.py
 
-refactor: format lint
+build:
+	docker build -t workout-change:latest .
 
-deploy:
-	#deploy goes here
-		
-all: install lint test format deploy
+run:
+	docker run -p 8080:8080 workout-change
+
+invoke:
+	curl http://127.0.0.1:8080/calculate_bmr/male/72/172/23/1.3
+
+run-kube:
+	kubectl apply -f kube-hello-change.yaml
+
+all: install lint
