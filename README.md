@@ -10,3 +10,13 @@
 2. Suggest workout time each time
 3. Suggest meal for work out based on BMR
 
+
+
+## Push to dockerhub
+![Dockerhub-demo](https://github.com/nogibjj/lyk-ids-project2/blob/main/Dockerhub.png)
+
+
+## Use of MiniKubes
+![MiniKubes-demo1](https://github.com/nogibjj/lyk-ids-project2/blob/main/MiniKube1.png)
+![MiniKubes-demo2](https://github.com/nogibjj/lyk-ids-project2/blob/main/MiniKube2.png)
+
